@@ -22,5 +22,5 @@ Python benchmarking for humans.
 
 yields
 
-    0.002 seconds for 1024 runs (0.0 seconds per run)
+    0.001 seconds for 2048 runs (0.0005 milliseconds per run)
 

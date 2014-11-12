@@ -48,9 +48,13 @@ class Timer:
             self.counts *= 2
             self.__run__()
 
+    def exact(self):
+        """Return the raw time per execution"""
+        return self.total / self.counts
+
     def output(self):
         """Return human-readable output"""
-        return ('{} seconds for {} runs ({} seconds per run)'.format(
+        return ('{} seconds for {} runs ({} milliseconds per run)'.format(
                 round(self.total, 3), self.counts,
-                round(self.total / self.counts, 5)))
+                round(self.exact() * 1000, 5)))
 
