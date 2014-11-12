@@ -2,6 +2,7 @@
 # coding: utf-8
 
 from time import time
+from types import FunctionType, ListType, TupleType
 
 class Timer:
     """
@@ -16,9 +17,12 @@ class Timer:
     """
 
     def __init__(self, func, setup=None, exit=None):
-        self.func = func if type(func) in (list, tuple) else [func]
-        self.setup = setup if type(setup) in (list, tuple) else [setup]
-        self.exit = exit if type(exit) in (list, tuple) else [exit]
+        det = lambda f: (f if type(f) in (ListType, TupleType)
+                           else [f] if type(f) is FunctionType
+                           else None)
+        self.func = det(func)
+        self.setup = det(setup)
+        self.exit = det(exit)
 
     def __repr__(self):
         return 'Timer object for {}'.format(self.func)
