@@ -3,7 +3,7 @@
 
 from unittest import TestCase, main
 
-from timer import Timer
+from titus import Timer
 
 def a():
     pass
