@@ -10,19 +10,28 @@ class Timer:
     Runs the supplied function (or a list/tuple of functions) as many
     as needed until the total time exceeds 1ms. The functions are run
     interleaved (1,2,3,1,2,3,...) to minimize jitter.
+
+    Optionally supllied setup and exit function(s/lists/tuples) are run
+    without timing.
     """
 
-    def __init__(self, func):
+    def __init__(self, func, setup=None, exit=None):
         self.func = func if type(func) in (list, tuple) else [func]
+        self.setup = setup if type(setup) in (list, tuple) else [setup]
+        self.exit = exit if type(exit) in (list, tuple) else [exit]
 
     def __repr__(self):
         return 'Timer object for {}'.format(self.func)
 
     def __run__(self):
+        if self.setup:
+            [f() for f in self.setup]
         self.start = time()
         for i in range(self.counts):
             [f() for f in self.func]
         self.stop = time()
+        if self.exit:
+            [f() for f in self.exit]
 
     def __timer__(self):
         """Calculate the time needed"""
