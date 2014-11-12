@@ -23,36 +23,34 @@ class Timer:
         self.func = det(func)
         self.setup = det(setup)
         self.teardown = det(teardown)
+        self.total = 0.0
 
     def __repr__(self):
         return 'Timer object for {}'.format(self.func)
 
     def __run__(self):
         """Actually run functions and time them"""
-        if self.setup:
-            [f() for f in self.setup]
-        self.start = time()
         for i in range(self.counts):
+            if self.setup:
+                [f() for f in self.setup]
+            start = time()
             [f() for f in self.func]
-        self.stop = time()
-        if self.teardown:
-            [f() for f in self.teardown]
-
-    def __timer__(self):
-        """Calculate the time needed"""
-        return self.stop - self.start
+            self.total += time() - start
+            if self.teardown:
+                [f() for f in self.teardown]
 
     def run(self):
         """Run the benchmark until it takes long enough"""
         self.counts = 1
         self.__run__()
-        while self.__timer__() < 0.001:
+        while self.total < 0.001:
+            self.total = 0.0
             self.counts *= 2
             self.__run__()
 
     def output(self):
         """Return human-readable output"""
         return ('{} seconds for {} runs ({} seconds per run)'.format(
-                round(self.__timer__(), 3), self.counts,
-                round(self.__timer__() / self.counts, 5)))
+                round(self.total, 3), self.counts,
+                round(self.total / self.counts, 5)))
 
