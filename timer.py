@@ -28,6 +28,7 @@ class Timer:
         return 'Timer object for {}'.format(self.func)
 
     def __run__(self):
+        """Actually run functions and time them"""
         if self.setup:
             [f() for f in self.setup]
         self.start = time()
