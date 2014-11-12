@@ -31,13 +31,13 @@ class TimingTestCase(TestCase):
         t.run()
         self.assertIn('0.00', t.output())
 
-    def test_exit_function(self):
-        t = Timer(a, exit=b)
+    def test_teardown_function(self):
+        t = Timer(a, teardown=b)
         t.run()
         self.assertIn('0.00', t.output())
 
-    def test_setup_exit(self):
-        t = Timer(a, setup=b, exit=b)
+    def test_setup_teardown(self):
+        t = Timer(a, setup=b, teardown=b)
         t.run()
         self.assertIn('0.00', t.output())
 
