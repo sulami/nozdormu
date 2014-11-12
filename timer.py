@@ -50,8 +50,8 @@ class Timer:
             self.__run__()
 
     def output(self):
-        """Print human-readable output"""
-        print('{} seconds for {} runs ({} seconds per run)'.format(
-              round(self.__timer__(), 3), self.counts,
-              round(self.__timer__() / self.counts, 5)))
+        """Return human-readable output"""
+        return ('{} seconds for {} runs ({} seconds per run)'.format(
+                round(self.__timer__(), 3), self.counts,
+                round(self.__timer__() / self.counts, 5)))
 
