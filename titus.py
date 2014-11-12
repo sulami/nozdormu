@@ -16,13 +16,13 @@ class Timer:
     run without timing.
     """
 
-    def __init__(self, func, setup=None, teardown=None):
+    def __init__(self, func, setUp=None, tearDown=None):
         det = lambda f: (f if type(f) in (list, tuple)
                            else [f] if type(f) is FunctionType
                            else None)
         self.func = det(func)
-        self.setup = det(setup)
-        self.teardown = det(teardown)
+        self.setUp = det(setUp)
+        self.tearDown = det(tearDown)
         self.total = 0.0
 
     def __repr__(self):
@@ -31,13 +31,13 @@ class Timer:
     def __run__(self):
         """Actually run functions and time them"""
         for i in range(self.counts):
-            if self.setup:
-                [f() for f in self.setup]
+            if self.setUp:
+                [f() for f in self.setUp]
             start = time()
             [f() for f in self.func]
             self.total += time() - start
-            if self.teardown:
-                [f() for f in self.teardown]
+            if self.tearDown:
+                [f() for f in self.tearDown]
 
     def run(self):
         """Run the benchmark until it takes long enough"""
