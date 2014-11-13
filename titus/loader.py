@@ -13,7 +13,7 @@ class BenchLoader:
         for name in dir(module):
             obj = getattr(module, name)
             if isinstance(obj, type) and issubclass(obj, BenchBatch):
-                benchs.append(self.loadfromBatch(obj))
+                benchs.append(self.loadFromBatch(obj))
         return benchs
 
     def loadFromBatch(self, batch):

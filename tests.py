@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
+import sys
 import unittest
 from unittest.mock import Mock
 
@@ -30,7 +31,7 @@ class LoaderTestCase(unittest.TestCase):
 
     def test_load_from_module(self):
         b = BenchLoader()
-        benchs = b.loadFromModule(self.__module__) # FIXME
+        benchs = b.loadFromModule(sys.modules[__name__])
 
 if __name__ == '__main__':
     unittest.main()
