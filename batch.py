@@ -1,20 +1,5 @@
-#!/usr/bin/env python3
-# coding: utf-8
-
-from time import time
-from types import FunctionType
-
-class Timer:
-    """
-    Timer class to use for benchmarking
-
-    Runs the supplied function (or a list/tuple of functions) as many
-    as needed until the total time exceeds 1ms. The functions are run
-    interleaved (1,2,3,1,2,3,...) to minimize jitter.
-
-    Optionally supllied setup and teardown function(s/lists/tuples) are
-    run without timing.
-    """
+class BenchBatch:
+    """This class contains a group of benchmarks to run"""
 
     def __init__(self):
         self.__total__ = 0.0
@@ -28,14 +13,14 @@ class Timer:
         for i in range(self.counts):
             self.setUp()
             start = time()
-            for b in self.__benchmarks__:
-                print(b) # TODO call the functions
+            # for b in self.__benchmarks__:
+            #     print(b) # TODO call the functions
             self.__total__ += time() - start
             self.tearDown()
 
     def __load__(self):
         isvalid = lambda attr: attr.startswith('bench')
-        self.__benchmarks__ = list(filter(isvalid, dir(self)))
+        self.__benchmarks__ = list(map(Benchmark, list(filter(isvalid, dir(self)))))
 
     def setUp(self):
         pass
@@ -61,17 +46,4 @@ class Timer:
         return ('{} seconds for {} runs ({} milliseconds per run)'.format(
                 round(self.__total__, 3), self.counts,
                 round(self.exact() * 1000, 5)))
-
-class BenchProgram:
-    """This program loads and runs the tests"""
-    def __init__(self):
-        self.benchLoader = benchLoader
-        self.benchRunner = benchRunner
-        self.runBenchs()
-
-    def runBenchs(self):
-        result = self.benchRunner.run()
-        exit(result)
-
-main = BenchProgram
 
