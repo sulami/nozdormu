@@ -8,7 +8,6 @@ import titus.main
 from titus.batch import BenchBatch
 from titus.loader import BenchLoader
 
-
 class BatchMock(BenchBatch):
     """Serve as a mock to load a batch from a module"""
     def bench_something(self):
@@ -31,7 +30,7 @@ class LoaderTestCase(unittest.TestCase):
 
     def test_load_from_module(self):
         b = BenchLoader()
-        benchs = b.loadFromModule(self.__module__)
+        benchs = b.loadFromModule(self.__module__) # FIXME
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,0 +1,3 @@
+class BenchSuite:
+    pass
+
