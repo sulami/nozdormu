@@ -29,7 +29,7 @@ class Timer:
             self.setUp()
             start = time()
             for b in self.__benchmarks__:
-                b()
+                print(b) # TODO call the functions
             self.__total__ += time() - start
             self.tearDown()
 
