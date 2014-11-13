@@ -62,3 +62,16 @@ class Timer:
                 round(self.__total__, 3), self.counts,
                 round(self.exact() * 1000, 5)))
 
+class BenchProgram:
+    """This program loads and runs the tests"""
+    def __init__(self):
+        self.benchLoader = benchLoader
+        self.benchRunner = benchRunner
+        self.runBenchs()
+
+    def runBenchs(self):
+        result = self.benchRunner.run()
+        exit(result)
+
+main = BenchProgram
+
