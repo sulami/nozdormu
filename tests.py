@@ -5,41 +5,14 @@ from unittest import TestCase, main
 
 from titus import Timer
 
-def a():
-    pass
-
-def b():
-    pass
-
 class TimingTestCase(TestCase):
-    def test_single_function(self):
-        t = Timer(a)
-        t.run()
-        self.assertIn('0.00', t.output()) # This should run fast
+    def test_simple_test(self):
+        class Toast(Timer):
+            pass
 
-    def test_multiple_functions(self):
-        t = Timer([a, b]) # List
+        t = Toast()
         t.run()
-        self.assertIn('0.00', t.output())
-
-        t = Timer((a, b)) # Tuple
-        t.run()
-        self.assertIn('0.00', t.output())
-
-    def test_setup_function(self):
-        t = Timer(a, setUp=b)
-        t.run()
-        self.assertIn('0.00', t.output())
-
-    def test_teardown_function(self):
-        t = Timer(a, tearDown=b)
-        t.run()
-        self.assertIn('0.00', t.output())
-
-    def test_setup_teardown(self):
-        t = Timer(a, setUp=b, tearDown=b)
-        t.run()
-        self.assertIn('0.00', t.output())
+        self.assertIn('0.00', t.results()) # This should run fast
 
 if __name__ == '__main__':
     main()

@@ -16,14 +16,9 @@ class Timer:
     run without timing.
     """
 
-    def __init__(self, func, setUp=None, tearDown=None):
-        det = lambda f: (f if type(f) in (list, tuple)
-                           else [f] if type(f) is FunctionType
-                           else None)
-        self.func = det(func)
-        self.setUp = det(setUp)
-        self.tearDown = det(tearDown)
-        self.total = 0.0
+    def __init__(self):
+        self.__total__ = 0.0
+        self.__load__()
 
     def __repr__(self):
         return 'Timer object for {}'.format(self.func)
@@ -31,30 +26,39 @@ class Timer:
     def __run__(self):
         """Actually run functions and time them"""
         for i in range(self.counts):
-            if self.setUp:
-                [f() for f in self.setUp]
+            self.setUp()
             start = time()
-            [f() for f in self.func]
-            self.total += time() - start
-            if self.tearDown:
-                [f() for f in self.tearDown]
+            for b in self.__benchmarks__:
+                b()
+            self.__total__ += time() - start
+            self.tearDown()
+
+    def __load__(self):
+        isvalid = lambda attr: attr.startswith('bench')
+        self.__benchmarks__ = list(filter(isvalid, dir(self)))
+
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
 
     def run(self):
         """Run the benchmark until it takes long enough"""
         self.counts = 1
         self.__run__()
-        while self.total < 0.001:
-            self.total = 0.0
+        while self.__total__ < 0.001:
+            self.__total__ = 0.0
             self.counts *= 2
             self.__run__()
 
     def exact(self):
         """Return the raw time per execution"""
-        return self.total / self.counts
+        return self.__total__ / self.counts
 
-    def output(self):
+    def results(self):
         """Return human-readable output"""
         return ('{} seconds for {} runs ({} milliseconds per run)'.format(
-                round(self.total, 3), self.counts,
+                round(self.__total__, 3), self.counts,
                 round(self.exact() * 1000, 5)))
 
