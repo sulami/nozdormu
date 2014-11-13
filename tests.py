@@ -5,6 +5,14 @@ import unittest
 from unittest.mock import Mock
 
 import titus.main
+from titus.batch import BenchBatch
+from titus.loader import BenchLoader
+
+
+class BatchMock(BenchBatch):
+    """Serve as a mock to load a batch from a module"""
+    def bench_something(self):
+        pass
 
 class MainTestCase(unittest.TestCase):
     def setUp(self):
@@ -20,6 +28,10 @@ class MainTestCase(unittest.TestCase):
 class LoaderTestCase(unittest.TestCase):
     def setUp(self):
         pass
+
+    def test_load_from_module(self):
+        b = BenchLoader()
+        benchs = b.loadFromModule(self.__module__)
 
 if __name__ == '__main__':
     unittest.main()

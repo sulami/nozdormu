@@ -7,10 +7,15 @@ class BenchLoader:
         pass
 
     def loadFromModule(self, module):
-        pass
+        """Get all batches from a module and all benchs from a batch"""
+        benchs = []
+        for name in dir(module):
+            obj = getattr(module, name)
+            if isinstance(obj, type) and issubclass(obj, BenchBatch):
+                benchs.append(self.loadfromBatch(obj))
+        return benchs
 
     def loadFromBatch(self, module):
-        pass
-        # isbench = lambda name: name.startswith('bench')
+        isbench = lambda name: name.startswith('bench')
         # self.__benchmarks__ = list(map(Benchmark, list(filter(isvalid, dir(self)))))
 
