@@ -8,6 +8,7 @@ from unittest.mock import Mock
 import titus.main
 from titus.batch import BenchBatch
 from titus.loader import BenchLoader
+from titus.suite import BenchSuite
 
 class BatchMock(BenchBatch):
     """Serve as a mock to load a batch from a module"""
@@ -32,6 +33,8 @@ class LoaderTestCase(unittest.TestCase):
     def test_load_from_module(self):
         b = BenchLoader()
         benchs = b.loadFromModule(sys.modules[__name__])
+        for b in benchs:
+            self.assertEqual(type(b), BenchSuite)
 
 if __name__ == '__main__':
     unittest.main()
