@@ -11,16 +11,15 @@ Python benchmarking for humans.
 
 ### Usage example
 
-    from titus import Timer
+    from titus import BenchSet, main
     
-    def func():
-        return 1 + 1
+    class MyBenchSet(BenchSet):
+        def bench_me(self):
+            return 1 + 1
     
-    t = Timer(func)
-    t.run()
-    print(t.output())
+    main()
 
 yields
 
-    0.001 seconds for 2048 runs (0.0005 milliseconds per run)
+    bench_me: 0.001 seconds for 2048 runs (0.0005 milliseconds per run)
 
