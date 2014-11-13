@@ -11,11 +11,11 @@ class BenchProgram:
     def __init__(self, benchLoader=BenchLoader, benchRunner=BenchRunner):
         self.benchLoader = benchLoader
         self.benchRunner = benchRunner
-        self.runBenchs()
+        self.run()
 
-    def runBenchs(self):
-        result = self.benchRunner.run()
-        exit(result)
+    def run(self):
+        self.result = self.benchRunner.run()
+        exit(self.result)
 
 main = BenchProgram
 

@@ -9,14 +9,13 @@ import titus.main
 class MainTestCase(unittest.TestCase):
     def setUp(self):
         self.runner = Mock()
-        self.runner.run = Mock(return_value=False)
+        self.runner.run = Mock(return_value=0)
+        self.loader = Mock()
 
-    def test_main(self):
-        try:
-            titus.main.main(benchRunner=self.runner)
-        except SystemExit:
-            # main exits with return code
-            pass
+    def test_main_bench_running(self):
+        with self.assertRaises(SystemExit) as e:
+            titus.main.main(benchLoader=self.loader, benchRunner=self.runner)
+        self.assertEqual(0, e.exception.code)
 
 if __name__ == '__main__':
     unittest.main()
