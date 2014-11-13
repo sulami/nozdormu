@@ -18,10 +18,6 @@ class BenchBatch:
             self.__total__ += time() - start
             self.tearDown()
 
-    def __load__(self):
-        isvalid = lambda attr: attr.startswith('bench')
-        self.__benchmarks__ = list(map(Benchmark, list(filter(isvalid, dir(self)))))
-
     def setUp(self):
         pass
 

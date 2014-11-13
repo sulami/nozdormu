@@ -8,10 +8,17 @@ from titus.runner import BenchRunner
 class BenchProgram:
     """This program loads and runs the tests"""
 
-    def __init__(self, benchLoader=BenchLoader, benchRunner=BenchRunner):
+    def __init__(self, module='__main__', benchLoader=BenchLoader,
+                 benchRunner=BenchRunner):
         self.benchLoader = benchLoader
         self.benchRunner = benchRunner
+        self.module = module
+        self.load()
         self.run()
+
+    def load(self):
+        loader = self.benchLoader()
+        self.bench = loader.loadFromModule(self.module)
 
     def run(self):
         self.result = self.benchRunner.run()

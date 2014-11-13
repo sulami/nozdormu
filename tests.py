@@ -17,6 +17,10 @@ class MainTestCase(unittest.TestCase):
             titus.main.main(benchLoader=self.loader, benchRunner=self.runner)
         self.assertEqual(0, e.exception.code)
 
+class LoaderTestCase(unittest.TestCase):
+    def setUp(self):
+        pass
+
 if __name__ == '__main__':
     unittest.main()
 
