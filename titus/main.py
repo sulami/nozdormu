@@ -29,7 +29,6 @@ class BenchProgram:
     def run(self):
         runner = self.benchRunner()
         self.result = runner.run(self.bench)
-        exit(self.result)
 
 main = BenchProgram
 
