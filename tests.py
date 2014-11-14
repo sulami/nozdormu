@@ -13,6 +13,8 @@ class BatchMock(BenchBatch):
     """Serve as a mock to load a batch from a module"""
     def bench_something(self):
         pass
+    def bench_something_else(self):
+        pass
 
 class MainTestCase(unittest.TestCase):
     def setUp(self):
