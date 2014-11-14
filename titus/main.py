@@ -1,3 +1,4 @@
+from six import string_types
 from sys import exit
 from time import time
 from types import FunctionType
@@ -8,11 +9,16 @@ from titus.runner import BenchRunner
 class BenchProgram:
     """This program loads and runs the tests"""
 
+    module = None # For testing purposes
+
     def __init__(self, module='__main__', benchLoader=BenchLoader,
                  benchRunner=BenchRunner):
         self.benchLoader = benchLoader
         self.benchRunner = benchRunner
-        self.module = module
+        if isinstance(module, string_types):
+            self.module = __import__(module)
+            for part in module.split('.')[1:]:
+                self.module = getattr(self.module, part)
         self.load()
         self.run()
 
