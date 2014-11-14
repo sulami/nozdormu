@@ -11,13 +11,14 @@ Python benchmarking for humans.
 
 ### Usage example
 
-    from titus import BenchSet, main
+    import titus
     
-    class MyBenchSet(BenchSet):
+    class MyBenchSet(titus.BenchBatch):
         def bench_me(self):
             return 1 + 1
     
-    main()
+    if __name__ == '__main__':
+        titus.main()
 
 yields
 
