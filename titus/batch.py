@@ -5,7 +5,7 @@ class BenchBatch:
 
     def __init__(self, methodName):
         self.totalTime = 0.0
-        self.count = 1
+        self.count = 0
         self.methodName = methodName
         try:
             self.method = getattr(self, self.methodName)
@@ -13,10 +13,11 @@ class BenchBatch:
             raise ImportError('Failed to load {}'.format(self.methodName))
 
     def __repr__(self):
-        return 'Benchmark: {}'.format(self.methodName)
+        return self.methodName
 
     def run(self):
         """Peform setup/run method/teardown and time it"""
+        self.count += 1
         self.setUp()
         start = time()
         self.method()

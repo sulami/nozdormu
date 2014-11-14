@@ -21,5 +21,6 @@ class BenchLoader:
         isbench = lambda name: name.startswith('bench')
         benchNames = list(filter(isbench, dir(batch)))
         suite = self.suiteClass(map(batch, benchNames))
+        suite.batch=batch
         return suite
 

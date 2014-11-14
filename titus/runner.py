@@ -8,12 +8,13 @@ class BenchRunner:
         """
         for batch in suite:
             benchsRunning = [b for b in batch]
+            print('Running Batch: {}'.format(batch))
             while len(benchsRunning) >= 1:
                 for bench in benchsRunning:
                     if bench.totalTime < 0.001:
-                        bench.count += 1
                         bench.run()
                     else:
                         benchsRunning.remove(bench)
-                        print(str(bench), bench.results())
+                        print('{}: {}'.format(bench, bench.results()))
+            print()
 
