@@ -21,7 +21,8 @@ class BenchProgram:
         self.bench = loader.loadFromModule(self.module)
 
     def run(self):
-        self.result = self.benchRunner.run(self.bench)
+        runner = self.benchRunner()
+        self.result = runner.run(self.bench)
         exit(self.result)
 
 main = BenchProgram

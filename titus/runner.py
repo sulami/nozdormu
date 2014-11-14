@@ -1,13 +1,9 @@
 class BenchRunner:
-    """Run a benchmark"""
+    """The standard runner for a BenchSuite"""
 
-    def __init__(self, suite):
-        self.suite = suite
-        self.run()
-
-    def run(self):
+    def run(self, suite):
         """Run the tests and return success status"""
-        for bench in self.benchs:
-            pass
+        for bench in suite:
+            print(bench)
         return 0
 

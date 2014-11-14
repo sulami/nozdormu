@@ -1,12 +1,12 @@
 class BenchBatch:
     """This class contains a group of benchmarks to run"""
 
-    def __init__(self):
+    def __init__(self, methodName):
         self.__total__ = 0.0
-        self.__load__()
+        self.methodName = methodName
 
     def __repr__(self):
-        return 'Timer object for {}'.format(self.func)
+        return 'Batch: {}'.format(self.methodName)
 
     def __run__(self):
         """Actually run functions and time them"""
