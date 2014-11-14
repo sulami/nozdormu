@@ -1,12 +1,18 @@
+from time import time
+
 class BenchBatch:
-    """This class contains a group of benchmarks to run"""
+    """This class contains benchmark to run"""
 
     def __init__(self, methodName):
         self.__total__ = 0.0
         self.methodName = methodName
+        try:
+            self.method = getattr(self, self.methodName)
+        except:
+            print('that bad')
 
     def __repr__(self):
-        return 'Batch: {}'.format(self.methodName)
+        return 'Benchmark: {}'.format(self.methodName)
 
     def __run__(self):
         """Actually run functions and time them"""
@@ -15,6 +21,8 @@ class BenchBatch:
             start = time()
             # for b in self.__benchmarks__:
             #     print(b) # TODO call the functions
+
+            self.method()
             self.__total__ += time() - start
             self.tearDown()
 

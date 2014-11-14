@@ -3,7 +3,9 @@ class BenchRunner:
 
     def run(self, suite):
         """Run the tests and return success status"""
-        for bench in suite:
-            print(bench)
+        for batch in suite:
+            for bench in batch:
+                bench.run()
+                print(str(bench), bench.results())
         return 0
 
