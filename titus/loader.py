@@ -14,7 +14,7 @@ class BenchLoader:
             obj = getattr(module, name)
             if isinstance(obj, type) and issubclass(obj, BenchBatch):
                 benchs.append(self.loadFromBatch(obj))
-        return benchs
+        return self.suiteClass(benchs)
 
     def loadFromBatch(self, batch):
         """Get all benchs from a batch and return a loaded suite"""

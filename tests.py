@@ -31,7 +31,7 @@ class LoaderTestCase(unittest.TestCase):
     def test_load_from_module(self):
         b = BenchLoader()
         benchs = b.loadFromModule(sys.modules[__name__])
-        for b in benchs:
+        for b in benchs.benchs:
             self.assertEqual(type(b), BenchSuite)
 
 if __name__ == '__main__':
