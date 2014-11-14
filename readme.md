@@ -31,14 +31,14 @@ yields
 
     Starting benchmark session
     
-    Running Batch: MyBenchBatch
+      Running Batch: MyBenchBatch
         bench_one: 0.001 seconds for 3026 runs (0.00033 milliseconds per run)
         bench_two: 0.001 seconds for 3027 runs (0.00033 milliseconds per run)
-    Batch finished, time: 0.01s
+      Batch finished, time: 0.01s
     
-    Running Batch: MyOtherBenchBatch
+      Running Batch: MyOtherBenchBatch
         bench_three: 0.001 seconds for 3173 runs (0.00032 milliseconds per run)
-    Batch finished, time: 0.01s
+      Batch finished, time: 0.01s
     
     Benchmarking finished
     2 batches, 3 benchmarks
