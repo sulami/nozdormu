@@ -9,6 +9,12 @@ Python benchmarking for humans.
 * Precise even for very fast benchmarks by running them for at least 1ms
 * Benchmarks in a batch are run interleaved to reduce jitter
 
+
+### Requirements
+
+* Python 3.2+
+* `six`
+
 ### Usage example
 
 ```python
@@ -48,5 +54,32 @@ Benchmarking finished
 total time: 0.01s
 ```
 
-with some Cucumber-inpsired colouring if your terminal supports that.
+with some Cucumber-inspired colouring if your terminal supports that.
+
+### Usage
+
+As you can see above, there are few things for you to do. The general structure
+is very similar to unittests. First `import titus`, then subclass
+`titus.BenchBatch` as often as you need to. Each batch can hold as many
+benchmarks as you need it to.
+
+To get executed, benchmarks have to start with 'bench' (like unittests have to
+start with 'test'), and just like in unittests, you can override the class
+methods `setUp` and `tearDown` for preparations and/or mocking. Both these
+functions are run before and after each benchmark execution and will be
+excluded from the benchmark timing (but included in the total time).
+
+Benchmarks that take less than 1ms will be executed repeatedly until they
+accumulate at least 1ms of total runtime. This happens on a per-batch basis
+and the benchmarks of a batch will rotate until they all ran long enough. This
+should reduce jitter from other system load for these extremely fast
+benchmarks.
+
+### Acknowledgements
+
+Ideas and inspiration by:
+
+* Python's unittest
+* GRB's readygo
+* Cucumber
 
