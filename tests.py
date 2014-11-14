@@ -17,13 +17,11 @@ class BatchMock(BenchBatch):
 
 class MainTestCase(unittest.TestCase):
     def setUp(self):
-        self.runner = Mock()
-        self.runner.run = Mock(return_value=0)
-        self.loader = Mock()
+        pass
 
     def test_main_bench_running(self):
         with self.assertRaises(SystemExit) as e:
-            titus.main.main(benchLoader=self.loader, benchRunner=self.runner)
+            titus.main.main(module=sys.modules[__name__])
         self.assertEqual(0, e.exception.code)
 
 class LoaderTestCase(unittest.TestCase):
