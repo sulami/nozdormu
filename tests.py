@@ -3,7 +3,6 @@
 
 import sys
 import unittest
-from unittest.mock import Mock
 
 import titus.main
 from titus.batch import BenchBatch
