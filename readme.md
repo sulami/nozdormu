@@ -13,7 +13,7 @@ Python benchmarking for humans.
 
     import titus
     
-    class MyBenchSet(titus.BenchBatch):
+    class MyBenchmarks(titus.BenchBatch):
         def bench_me(self):
             return 1 + 1
     
