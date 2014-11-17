@@ -30,7 +30,6 @@ class MyOtherBenchBatch(nozdormu.BenchBatch):
     def bench_three(self):
         from time import sleep
         sleep(.1)
-        pass
 
 if __name__ == '__main__':
     nozdormu.main()
