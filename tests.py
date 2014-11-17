@@ -21,9 +21,7 @@ class MainTestCase(unittest.TestCase):
         pass
 
     def test_main_bench_running(self):
-        with self.assertRaises(SystemExit) as e:
-            nozdormu.main.main()
-        self.assertEqual(0, e.exception.code)
+        nozdormu.main()
 
 class LoaderTestCase(unittest.TestCase):
     def setUp(self):
