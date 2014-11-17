@@ -66,14 +66,16 @@ class BenchRunner:
                             baseComp = '{}{}{}'.format(termc['yellow'], 'new',
                                        termc['cyan'])
                         elif baselineBench['time'] >= bench.exact():
-                            baseComp = '{}-{:.3f}ms / {:.1f}%{}'.format(termc['green'],
+                            baseComp = '{}-{:.3f}ms / {:.1f}%{}'.format(
+                                termc['green'],
                                 sub(baselineBench['time'], bench.exact()),
-                                100 - bench.exact() * 100 / baselineBench['time'],
+                                100-bench.exact()*100/baselineBench['time'],
                                 termc['cyan'])
                         else:
-                            baseComp = '{}+{:.3f}ms / {:.1f}%{}'.format(termc['red'],
+                            baseComp = '{}+{:.3f}ms / {:.1f}%{}'.format(
+                                termc['red'],
                                 sub(bench.exact(), baselineBench['time']),
-                                100 - baselineBench['time'] * 100 / bench.exact(),
+                                100-baselineBench['time']*100/bench.exact(),
                                 termc['cyan'])
 
                         self.output('    {}{}: {} ({}){}'.format( termc['cyan'],
