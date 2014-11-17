@@ -58,19 +58,19 @@ yields
 Starting benchmark session
 
   Running Batch: AnActualBenchBatch
-    bench_random_addition: 0.15365ms (0.002s / 16 runs) (-0.010ms / 6.4%)
-    bench_list_creation: 0.00779ms (0.001s / 129 runs) (-0.001ms / 1.0%)
-    bench_import_math: 0.00105ms (0.001s / 954 runs) (-0.000ms / 1.7%)
-  Batch finished, time: 0.01s
+    bench_random_addition: 152μs (2ms / 16 runs) (-6μs / 3.6%)
+    bench_list_creation: 8μs (1ms / 127 runs) (-85ns / 1.1%)
+    bench_import_math: 954ns (1ms / 1049 runs) (+17ns / 1.8%)
+  Batch finished, time: 12ms
 
   Running Batch: MyBenchBatch
-    bench_one: 0.00026ms (0.001s / 3897 runs) (new)
-    bench_two: 0.00026ms (0.001s / 3900 runs) (new)
-  Batch finished, time: 0.01s
+    bench_one: 236ns (1ms / 4243 runs) (-13ns / 5.4%)
+    bench_two: 232ns (1ms / 4305 runs) (-6ns / 2.7%)
+  Batch finished, time: 9ms
 
 Benchmarking finished
 2 batches, 5 benchmarks
-total time: 0.02s
+total time: 23ms
 ```
 
 with some Cucumber-inspired colouring if your terminal supports that.
