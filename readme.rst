@@ -27,7 +27,7 @@ Sorry, Python 2 will *not* work, that is just how it is.
 Usage example
 -------------
 
-.. code-block:: python
+.. code:: python
     import nozdormu
 
     class MyBenchBatch(nozdormu.BenchBatch):
@@ -57,7 +57,6 @@ Usage example
 
     if __name__ == '__main__':
         nozdormu.main()
-::
 
 
 yields
@@ -79,7 +78,6 @@ yields
     Benchmarking finished
     2 batches, 5 benchmarks
     total time: 23ms
-::
 
 with some Cucumber-inspired colouring if your terminal supports that.
 
