@@ -1,29 +1,33 @@
-# Nozdormu
+Nozdormu
+========
 
 Python benchmarking for humans and dragons.
 
-### Features
+Features
+--------
 
-* Unittest-style benchmark setup (TestCase -> BenchBatch)
-* `setUp`/`tearDown` are excluded from timing
-* Precise even for very fast benchmarks by running them for at least 1ms
+- Unittest-style benchmark setup (TestCase -> BenchBatch)
+- `setUp`/`tearDown` are excluded from timing
+- Precise even for very fast benchmarks by running them for at least 1ms
   or 16 times, whichever takes longer
-* Timing down to the nanosecond
-* Benchmarks in a batch are run interleaved to reduce jitter from random load
-* Manual GC to prevent interference with the benchmarks
-* Results are saved into a human-readable json file and used as baseline for
+- Timing down to the nanosecond
+- Benchmarks in a batch are run interleaved to reduce jitter from random load
+- Manual GC to prevent interference with the benchmarks
+- Results are saved into a human-readable json file and used as baseline for
   future tests
-* Just a few milliseconds overhead
+- Just a few milliseconds overhead
 
-### Requirements
+Requirements
+------------
 
-* Python 3.2+
+- Python 3.2+
 
 Sorry, Python 2 will *not* work, that is just how it is.
 
-### Usage example
+Usage example
+-------------
 
-```python
+.. code-block:: python
 import nozdormu
 
 class MyBenchBatch(nozdormu.BenchBatch):
@@ -53,12 +57,12 @@ class AnActualBenchBatch(nozdormu.BenchBatch):
 
 if __name__ == '__main__':
     nozdormu.main()
+::
 
-```
 
 yields
 
-```
+::
 Starting benchmark session
 
   Running Batch: AnActualBenchBatch
@@ -75,11 +79,12 @@ Starting benchmark session
 Benchmarking finished
 2 batches, 5 benchmarks
 total time: 23ms
-```
+::
 
 with some Cucumber-inspired colouring if your terminal supports that.
 
-### Usage
+Usage
+-----
 
 As you can see above, there are few things for you to do. The general structure
 is very similar to unittests. First `import nozdormu`, then subclass
@@ -98,11 +103,12 @@ and the benchmarks of a batch will rotate until they all ran long enough. This
 should reduce jitter from other system load for these extremely fast
 benchmarks.
 
-### Acknowledgements
+Acknowledgements
+----------------
 
 Ideas and inspiration by:
 
-* Python's unittest
-* GRB's readygo
-* Cucumber
+- Python's unittest
+- GRB's readygo
+- Cucumber
 
