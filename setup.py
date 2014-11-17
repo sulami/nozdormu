@@ -9,7 +9,7 @@ def readme():
 setup(name='nozdormu',
       version=nozdormu.VERSION,
       description='Python benchmarking for humans and dragons',
-      lon_description=readme(),
+      long_description=readme(),
       url='https://github.com/sulami/nozdormu',
       author='Robin Schroer',
       author_email='sulami@peerwire.org',
