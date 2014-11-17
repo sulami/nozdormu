@@ -92,7 +92,7 @@ class BenchRunner:
         with open('.nozdormu', 'w') as f:
             f.write(json.dumps(totalResults, sort_keys=True, indent=2))
 
-    def output(self, str):
+    def output(self, arg):
         """Print wrapper to easily supress output in tests"""
-        print(str)
+        print(arg)
 
