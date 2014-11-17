@@ -8,7 +8,8 @@ Python benchmarking for humans and dragons.
 * `setUp`/`tearDown` are excluded from timing
 * Precise even for very fast benchmarks by running them for at least 1ms
   or 16 times, whichever takes longer
-* Benchmarks in a batch are run interleaved to reduce jitter
+* Benchmarks in a batch are run interleaved to reduce jitter from random load
+* Uses manual GC to prevent it from interfering with the benchmarks
 * Saves results into json file to use as baseline for future runs and compares
   the results automatically
 

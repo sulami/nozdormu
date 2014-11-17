@@ -1,3 +1,4 @@
+import gc
 from time import time
 
 class BenchBatch:
@@ -18,6 +19,7 @@ class BenchBatch:
     def run(self):
         """Peform setup/run method/teardown and time it"""
         self.count += 1
+        gc.collect()
         self.setUp()
         start = time()
         self.method()
