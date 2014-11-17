@@ -6,7 +6,6 @@ from nozdormu.util import format_time
 
 termc = {
     'def': '\033[0m',
-    'bold': '\033[1m',
     'red': '\033[91m',
     'green': '\033[92m',
     'yellow': '\033[93m',
@@ -43,6 +42,7 @@ class BenchRunner:
                 for b in baseline:
                     if b['batch'] == batch.__repr__():
                         baselineBatch = b['results']
+                        break
 
             batchResults = []
             noBatches += 1
@@ -63,6 +63,7 @@ class BenchRunner:
                                 if b['name'] == bench.methodName:
                                     baselineBench = b
                                     btime = b['time']
+                                    break
                         bexact = bench.exact()
                         if not baselineBench:
                             baseComp = '{}{}{}'.format(termc['yellow'], 'new',
@@ -90,12 +91,10 @@ class BenchRunner:
                                  'results': batchResults,})
             gc.enable()
 
-        self.output('{}Benchmarking finished\n'
+        self.output('Benchmarking finished\n'
                     '{} batches, {} benchmarks\n'
-                    'total time: {}{}'.format(
-                    termc['bold'], noBatches, noBenchs,
-                    format_time(time() - totalStart),
-                    termc['def']))
+                    'total time: {}'.format(
+                    noBatches, noBenchs, format_time(time() - totalStart)))
 
         # Write the new baseline
         with open('.nozdormu', 'w') as f:
