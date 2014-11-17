@@ -29,32 +29,32 @@ Usage example
 
 .. code:: python
     import nozdormu
-
+    
     class MyBenchBatch(nozdormu.BenchBatch):
         def bench_one(self):
             pass
-
+    
         def bench_two(self):
             pass
-
+    
     class AnActualBenchBatch(nozdormu.BenchBatch):
         def setUp(self):
             import random
             self.r = random
-
+    
         def bench_list_creation(self):
             l = []
             for i in range(100):
                 l.append(i)
-
+    
         def bench_random_addition(self):
             l = []
             for i in range(100):
                 l.append(self.r.randint(0, 100))
-
+    
         def bench_import_math(self):
             import math
-
+    
     if __name__ == '__main__':
         nozdormu.main()
 
@@ -63,18 +63,18 @@ yields
 
 ::
     Starting benchmark session
-
+    
       Running Batch: AnActualBenchBatch
         bench_random_addition: 152μs (2ms / 16 runs) (-6μs / 3.6%)
         bench_list_creation: 8μs (1ms / 127 runs) (-85ns / 1.1%)
         bench_import_math: 954ns (1ms / 1049 runs) (new)
       Batch finished, time: 12ms
-
+    
       Running Batch: MyBenchBatch
         bench_one: 236ns (1ms / 4243 runs) (-13ns / 5.4%)
         bench_two: 232ns (1ms / 4305 runs) (-6ns / 2.7%)
       Batch finished, time: 9ms
-
+    
     Benchmarking finished
     2 batches, 5 benchmarks
     total time: 23ms
