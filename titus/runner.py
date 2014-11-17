@@ -7,12 +7,7 @@ termc = {
 }
 
 class BenchRunner:
-    """
-    The standard runner for a BenchSuite
-
-    Runs benchmarks batch-wise interleaved (see run()) and times both
-    the total time needed as well as the time per batch.
-    """
+    """The standard runner for a BenchSuite"""
 
     def run(self, suite):
         """

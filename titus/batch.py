@@ -36,7 +36,10 @@ class BenchBatch:
 
     def results(self):
         """Return human-readable output"""
-        return ('{} seconds for {} runs ({} milliseconds per run)'.format(
-                round(self.totalTime, 3), self.count,
-                round(self.exact() * 1000, 5)))
+        if self.count > 1:
+            return '{}ms ({}s / {} runs)'.format(
+                    round(self.exact() * 1000, 5),
+                    round(self.totalTime, 3), self.count)
+        else:
+            return '{}s'.format(round(self.exact() * 1, 3))
 
