@@ -2,5 +2,5 @@
 .nozdormu
 nozdormu.egg-info
 toast.py
-./tests.py
+tests.py
 
