@@ -8,12 +8,11 @@ Python benchmarking for humans.
 * `setUp`/`tearDown` are excluded from timing
 * Precise even for very fast benchmarks by running them for at least 1ms
 * Benchmarks in a batch are run interleaved to reduce jitter
-
+* Saves results into json file to use as baseline for future runs
 
 ### Requirements
 
 * Python 3.2+
-* `six`
 
 ### Usage example
 
@@ -29,6 +28,8 @@ class MyBenchBatch(titus.BenchBatch):
 
 class MyOtherBenchBatch(titus.BenchBatch):
     def bench_three(self):
+        from time import sleep
+        sleep(.1)
         pass
 
 if __name__ == '__main__':
@@ -41,17 +42,17 @@ yields
 Starting benchmark session
 
   Running Batch: MyBenchBatch
-    bench_one: 0.001 seconds for 3026 runs (0.00033 milliseconds per run)
-    bench_two: 0.001 seconds for 3027 runs (0.00033 milliseconds per run)
-  Batch finished, time: 0.01s
+    bench_one: 0.00024ms (0.01s / 40839 runs) (new)
+    bench_two: 0.00024ms (0.01s / 41834 runs) (-0.0ms)
+  Batch finished, time: 0.09s
 
   Running Batch: MyOtherBenchBatch
-    bench_three: 0.001 seconds for 3173 runs (0.00032 milliseconds per run)
-  Batch finished, time: 0.01s
+    bench_three: 0.1s (+0.014ms)
+  Batch finished, time: 0.1s
 
 Benchmarking finished
 2 batches, 3 benchmarks
-total time: 0.01s
+total time: 0.19s
 ```
 
 with some Cucumber-inspired colouring if your terminal supports that.
