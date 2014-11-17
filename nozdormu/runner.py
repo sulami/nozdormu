@@ -28,7 +28,8 @@ class BenchRunner:
         totalResults = []
 
         try: # to open the baseline file
-            baseline = json.loads(open('.nozdormu', 'r').read())
+            with open('.nozdormu', 'r') as f:
+                baseline = json.loads(f.read())
         except FileNotFoundError:
             baseline = None
 
