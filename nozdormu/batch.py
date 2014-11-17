@@ -1,5 +1,7 @@
 from time import time
 
+from nozdormu.util import format_time
+
 class BenchBatch:
     """This class contains benchmark to run"""
 
@@ -36,10 +38,6 @@ class BenchBatch:
 
     def results(self):
         """Return human-readable output"""
-        if self.count > 1:
-            return '{}ms ({}s / {} runs)'.format(
-                    round(self.exact() * 1000, 5),
-                    round(self.totalTime, 3), self.count)
-        else:
-            return '{}s'.format(round(self.exact() * 1, 3))
+        return '{} ({} / {} runs)'.format(format_time(self.exact()),
+                format_time(self.totalTime), self.count)
 

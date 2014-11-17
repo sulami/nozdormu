@@ -2,6 +2,8 @@ import json
 import gc
 from time import time
 
+from nozdormu.util import format_time
+
 termc = {
     'def': '\033[0m',
     'bold': '\033[1m',
@@ -10,8 +12,6 @@ termc = {
     'yellow': '\033[93m',
     'cyan': '\033[96m',
 }
-
-sub = lambda x, y: round((x - y) * 1000, 3)
 
 class BenchRunner:
     """The standard runner for a BenchSuite"""
@@ -62,39 +62,40 @@ class BenchRunner:
                             for b in baselineBatch:
                                 if b['name'] == bench.methodName:
                                     baselineBench = b
+                                    btime = b['time']
+                        bexact = bench.exact()
                         if not baselineBench:
                             baseComp = '{}{}{}'.format(termc['yellow'], 'new',
                                        termc['cyan'])
-                        elif baselineBench['time'] >= bench.exact():
-                            baseComp = '{}-{:.3f}ms / {:.1f}%{}'.format(
-                                termc['green'],
-                                sub(baselineBench['time'], bench.exact()),
-                                100-bench.exact()*100/baselineBench['time'],
+                        elif btime >= bexact:
+                            baseComp = '{}-{} / {:.1f}%{}'.format(
+                                termc['green'], format_time(btime - bexact),
+                                100 - bexact * 100 / btime,
                                 termc['cyan'])
                         else:
-                            baseComp = '{}+{:.3f}ms / {:.1f}%{}'.format(
-                                termc['red'],
-                                sub(bench.exact(), baselineBench['time']),
-                                100-baselineBench['time']*100/bench.exact(),
+                            baseComp = '{}+{} / {:.1f}%{}'.format(
+                                termc['red'], format_time(bexact - btime),
+                                100 - btime * 100 / bexact,
                                 termc['cyan'])
 
-                        self.output('    {}{}: {} ({}){}'.format( termc['cyan'],
+                        self.output('    {}{}: {} ({}){}'.format(termc['cyan'],
                               bench, bench.results(), baseComp, termc['def']))
                         batchResults.append({'name': bench.methodName,
-                                             'time': bench.exact(),
+                                             'time': bexact,
                                              'runs': bench.count, })
 
-            self.output('  Batch finished, time: {}s\n'.format(
-                        round(time() - batchStart, 2)))
+            self.output('  Batch finished, time: {}\n'.format(
+                        format_time(time() - batchStart)))
             totalResults.append({'batch': batch.__repr__(),
                                  'results': batchResults,})
             gc.enable()
 
         self.output('{}Benchmarking finished\n'
                     '{} batches, {} benchmarks\n'
-                    'total time: {}s{}'.format(
+                    'total time: {}{}'.format(
                     termc['bold'], noBatches, noBenchs,
-                    round(time() - totalStart, 2), termc['def']))
+                    format_time(time() - totalStart),
+                    termc['def']))
 
         # Write the new baseline
         with open('.nozdormu', 'w') as f:
