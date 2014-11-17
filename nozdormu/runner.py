@@ -19,7 +19,8 @@ class BenchRunner:
         """
         Run the benchmarks interleaved until all tests are finished,
         runs them grouped by batch. Compares to a possibly existing
-        json baseline (.nozdormu) and writes a new one.
+        json baseline (.nozdormu) and writes a new one.  Benchmarks are
+        run until they accumulate 1ms of runtime, but at least 16 times.
         """
         totalStart = time()
         noBatches = 0
@@ -47,7 +48,7 @@ class BenchRunner:
             print('  Running Batch: {}'.format(batch))
             while len(benchsRunning) >= 1:
                 for bench in benchsRunning:
-                    if bench.totalTime < 0.01:
+                    if bench.totalTime < 0.001 or bench.count < 16:
                         bench.run()
                     else:
                         benchsRunning.remove(bench)
