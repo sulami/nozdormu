@@ -29,13 +29,27 @@ class MyBenchBatch(nozdormu.BenchBatch):
     def bench_two(self):
         pass
 
-class MyOtherBenchBatch(nozdormu.BenchBatch):
-    def bench_three(self):
-        from time import sleep
-        sleep(.1)
+class AnActualBenchBatch(nozdormu.BenchBatch):
+    def setUp(self):
+        import random
+        self.r = random
+
+    def bench_list_creation(self):
+        l = []
+        for i in range(100):
+            l.append(i)
+
+    def bench_random_addition(self):
+        l = []
+        for i in range(100):
+            l.append(self.r.randint(0, 100))
+
+    def bench_import_math(self):
+        import math
 
 if __name__ == '__main__':
     nozdormu.main()
+
 ```
 
 yields
@@ -43,18 +57,20 @@ yields
 ```
 Starting benchmark session
 
-  Running Batch: MyBenchBatch
-    bench_two: 0.00073ms (0.001s / 1375 runs) (new)
-    bench_one: 0.00072ms (0.001s / 1388 runs) (-0.0ms)
-  Batch finished, time: 1.6s
+  Running Batch: AnActualBenchBatch
+    bench_random_addition: 0.15365ms (0.002s / 16 runs) (-0.010ms / 6.4%)
+    bench_list_creation: 0.00779ms (0.001s / 129 runs) (-0.001ms / 1.0%)
+    bench_import_math: 0.00105ms (0.001s / 954 runs) (-0.000ms / 1.7%)
+  Batch finished, time: 0.01s
 
-  Running Batch: MyOtherBenchBatch
-    bench_three: 100.18411ms (1.603s / 16 runs) (+0.039ms)
-  Batch finished, time: 1.64s
+  Running Batch: MyBenchBatch
+    bench_one: 0.00026ms (0.001s / 3897 runs) (new)
+    bench_two: 0.00026ms (0.001s / 3900 runs) (new)
+  Batch finished, time: 0.01s
 
 Benchmarking finished
-2 batches, 3 benchmarks
-total time: 3.23s
+2 batches, 5 benchmarks
+total time: 0.02s
 ```
 
 with some Cucumber-inspired colouring if your terminal supports that.
