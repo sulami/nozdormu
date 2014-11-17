@@ -44,17 +44,17 @@ yields
 Starting benchmark session
 
   Running Batch: MyBenchBatch
-    bench_one: 0.00024ms (0.01s / 40839 runs) (new)
-    bench_two: 0.00024ms (0.01s / 41834 runs) (-0.0ms)
-  Batch finished, time: 0.09s
+    bench_two: 0.00073ms (0.001s / 1375 runs) (new)
+    bench_one: 0.00072ms (0.001s / 1388 runs) (-0.0ms)
+  Batch finished, time: 1.6s
 
   Running Batch: MyOtherBenchBatch
-    bench_three: 0.1s (+0.014ms)
-  Batch finished, time: 0.1s
+    bench_three: 100.18411ms (1.603s / 16 runs) (+0.039ms)
+  Batch finished, time: 1.64s
 
 Benchmarking finished
 2 batches, 3 benchmarks
-total time: 0.19s
+total time: 3.23s
 ```
 
 with some Cucumber-inspired colouring if your terminal supports that.
