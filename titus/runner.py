@@ -1,3 +1,4 @@
+import json
 from time import time
 
 termc = {
@@ -17,8 +18,10 @@ class BenchRunner:
         totalStart = time()
         noBatches = 0
         noBenchs = 0
+        totalResults = []
         print('Starting benchmark session\n')
         for batch in suite:
+            batchResults = []
             noBatches += 1
             benchsRunning = [b for b in batch]
             noBenchs += len(benchsRunning)
@@ -32,8 +35,14 @@ class BenchRunner:
                         benchsRunning.remove(bench)
                         print('    {}{}: {}{}'.format(termc['cyan'], bench,
                               bench.results(), termc['def']))
+                        batchResults.append({'name': bench.methodName,
+                                             'time': bench.exact(),
+                                             'runs': bench.count, })
             print('  Batch finished, time: {}s\n'.format(
                   round(time() - batchStart, 2)))
+            totalResults.append({'batch': batch.__repr__(),
+                                 'results': batchResults,})
+        baseline = json.dumps(totalResults, sort_keys=True, indent=2)
         print('{}Benchmarking finished\n'
               '{} batches, {} benchmarks\n'
               'total time: {}s{}'.format(
