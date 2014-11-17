@@ -42,10 +42,11 @@ class BenchRunner:
                   round(time() - batchStart, 2)))
             totalResults.append({'batch': batch.__repr__(),
                                  'results': batchResults,})
-        baseline = json.dumps(totalResults, sort_keys=True, indent=2)
         print('{}Benchmarking finished\n'
               '{} batches, {} benchmarks\n'
               'total time: {}s{}'.format(
               termc['bold'], noBatches, noBenchs,
               round(time() - totalStart, 2), termc['def']))
+        with open('.titus', 'w') as f:
+            f.write(json.dumps(totalResults, sort_keys=True, indent=2))
 
