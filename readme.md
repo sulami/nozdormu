@@ -8,14 +8,18 @@ Python benchmarking for humans and dragons.
 * `setUp`/`tearDown` are excluded from timing
 * Precise even for very fast benchmarks by running them for at least 1ms
   or 16 times, whichever takes longer
+* Timing down to the nanosecond
 * Benchmarks in a batch are run interleaved to reduce jitter from random load
-* Uses manual GC to prevent it from interfering with the benchmarks
-* Saves results into json file to use as baseline for future runs and compares
-  the results automatically
+* Manual GC to prevent interference with the benchmarks
+* Results are saved into a human-readable json file and used as baseline for
+  future tests
+* Just a few milliseconds overhead
 
 ### Requirements
 
 * Python 3.2+
+
+Sorry, Python 2 will *not* work, that is just how it is.
 
 ### Usage example
 
@@ -60,7 +64,7 @@ Starting benchmark session
   Running Batch: AnActualBenchBatch
     bench_random_addition: 152μs (2ms / 16 runs) (-6μs / 3.6%)
     bench_list_creation: 8μs (1ms / 127 runs) (-85ns / 1.1%)
-    bench_import_math: 954ns (1ms / 1049 runs) (+17ns / 1.8%)
+    bench_import_math: 954ns (1ms / 1049 runs) (new)
   Batch finished, time: 12ms
 
   Running Batch: MyBenchBatch
