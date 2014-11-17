@@ -33,7 +33,7 @@ class BenchRunner:
         except FileNotFoundError:
             baseline = None
 
-        print('Starting benchmark session\n')
+        self.output('Starting benchmark session\n')
         for batch in suite:
             baselineBatch = None
             if baseline:
@@ -46,7 +46,7 @@ class BenchRunner:
             benchsRunning = [b for b in batch]
             noBenchs += len(benchsRunning)
             batchStart = time()
-            print('  Running Batch: {}'.format(batch))
+            self.output('  Running Batch: {}'.format(batch))
             while len(benchsRunning) >= 1:
                 for bench in benchsRunning:
                     if bench.totalTime < 0.001 or bench.count < 16:
@@ -71,24 +71,28 @@ class BenchRunner:
                                 sub(bench.exact(), baselineBench['time']),
                                 termc['cyan'])
 
-                        print('    {}{}: {} ({}){}'.format( termc['cyan'],
+                        self.output('    {}{}: {} ({}){}'.format( termc['cyan'],
                               bench, bench.results(), baseComp, termc['def']))
                         batchResults.append({'name': bench.methodName,
                                              'time': bench.exact(),
                                              'runs': bench.count, })
 
-            print('  Batch finished, time: {}s\n'.format(
-                  round(time() - batchStart, 2)))
+            self.output('  Batch finished, time: {}s\n'.format(
+                        round(time() - batchStart, 2)))
             totalResults.append({'batch': batch.__repr__(),
                                  'results': batchResults,})
 
-        print('{}Benchmarking finished\n'
-              '{} batches, {} benchmarks\n'
-              'total time: {}s{}'.format(
-              termc['bold'], noBatches, noBenchs,
-              round(time() - totalStart, 2), termc['def']))
+        self.output('{}Benchmarking finished\n'
+                    '{} batches, {} benchmarks\n'
+                    'total time: {}s{}'.format(
+                    termc['bold'], noBatches, noBenchs,
+                    round(time() - totalStart, 2), termc['def']))
 
         # Write the new baseline
         with open('.nozdormu', 'w') as f:
             f.write(json.dumps(totalResults, sort_keys=True, indent=2))
+
+    def output(self, str):
+        """Print wrapper to easily supress output in tests"""
+        print(str)
 

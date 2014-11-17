@@ -8,6 +8,7 @@ import nozdormu.main
 from nozdormu.batch import BenchBatch
 from nozdormu.loader import BenchLoader
 from nozdormu.suite import BenchSuite
+from nozdormu.runner import BenchRunner
 
 class BatchMock(BenchBatch):
     """Serve as a mock to load a batch from a module"""
@@ -16,12 +17,16 @@ class BatchMock(BenchBatch):
     def bench_something_else(self):
         pass
 
+class SilentRunner(BenchRunner):
+    def output(self, str):
+        pass # be silent
+
 class MainTestCase(unittest.TestCase):
     def setUp(self):
         pass
 
     def test_main_bench_running(self):
-        nozdormu.main()
+        nozdormu.main(benchRunner=SilentRunner)
 
 class LoaderTestCase(unittest.TestCase):
     def setUp(self):
