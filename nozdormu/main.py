@@ -3,8 +3,8 @@ from sys import exit
 from time import time
 from types import FunctionType
 
-from titus.loader import BenchLoader
-from titus.runner import BenchRunner
+from nozdormu.loader import BenchLoader
+from nozdormu.runner import BenchRunner
 
 class BenchProgram:
     """This program loads and runs the tests"""

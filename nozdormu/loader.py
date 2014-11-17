@@ -1,5 +1,5 @@
-from titus.batch import BenchBatch
-from titus.suite import BenchSuite
+from nozdormu.batch import BenchBatch
+from nozdormu.suite import BenchSuite
 
 class BenchLoader:
     """Load a batch of benchmarks and return them"""

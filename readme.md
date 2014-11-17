@@ -1,6 +1,6 @@
-# Titus
+# Nozdormu
 
-Python benchmarking for humans.
+Python benchmarking for humans and dragons.
 
 ### Features
 
@@ -17,23 +17,23 @@ Python benchmarking for humans.
 ### Usage example
 
 ```python
-import titus
+import nozdormu
 
-class MyBenchBatch(titus.BenchBatch):
+class MyBenchBatch(nozdormu.BenchBatch):
     def bench_one(self):
         pass
 
     def bench_two(self):
         pass
 
-class MyOtherBenchBatch(titus.BenchBatch):
+class MyOtherBenchBatch(nozdormu.BenchBatch):
     def bench_three(self):
         from time import sleep
         sleep(.1)
         pass
 
 if __name__ == '__main__':
-    titus.main()
+    nozdormu.main()
 ```
 
 yields
@@ -60,8 +60,8 @@ with some Cucumber-inspired colouring if your terminal supports that.
 ### Usage
 
 As you can see above, there are few things for you to do. The general structure
-is very similar to unittests. First `import titus`, then subclass
-`titus.BenchBatch` as often as you need to. Each batch can hold as many
+is very similar to unittests. First `import nozdormu`, then subclass
+`nozdormu.BenchBatch` as often as you need to. Each batch can hold as many
 benchmarks as you need it to.
 
 To get executed, benchmarks have to start with 'bench' (like unittests have to

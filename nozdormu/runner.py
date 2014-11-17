@@ -19,7 +19,7 @@ class BenchRunner:
         """
         Run the benchmarks interleaved until all tests are finished,
         runs them grouped by batch. Compares to a possibly existing
-        json baseline (.titus) and writes a new one.
+        json baseline (.nozdormu) and writes a new one.
         """
         totalStart = time()
         noBatches = 0
@@ -27,7 +27,7 @@ class BenchRunner:
         totalResults = []
 
         try: # to open the baseline file
-            baseline = json.loads(open('.titus', 'r').read())
+            baseline = json.loads(open('.nozdormu', 'r').read())
         except FileNotFoundError:
             baseline = None
 
@@ -87,6 +87,6 @@ class BenchRunner:
               round(time() - totalStart, 2), termc['def']))
 
         # Write the new baseline
-        with open('.titus', 'w') as f:
+        with open('.nozdormu', 'w') as f:
             f.write(json.dumps(totalResults, sort_keys=True, indent=2))
 

@@ -4,10 +4,10 @@
 import sys
 import unittest
 
-import titus.main
-from titus.batch import BenchBatch
-from titus.loader import BenchLoader
-from titus.suite import BenchSuite
+import nozdormu.main
+from nozdormu.batch import BenchBatch
+from nozdormu.loader import BenchLoader
+from nozdormu.suite import BenchSuite
 
 class BatchMock(BenchBatch):
     """Serve as a mock to load a batch from a module"""
@@ -22,7 +22,7 @@ class MainTestCase(unittest.TestCase):
 
     def test_main_bench_running(self):
         with self.assertRaises(SystemExit) as e:
-            titus.main.main()
+            nozdormu.main.main()
         self.assertEqual(0, e.exception.code)
 
 class LoaderTestCase(unittest.TestCase):
