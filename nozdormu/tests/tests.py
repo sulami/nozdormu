@@ -47,6 +47,8 @@ class UtilTestCase(unittest.TestCase):
         self.assertEqual(self.f(1.3e-8), '13ns')
         self.assertEqual(self.f(1.3e-5), '13μs')
         self.assertEqual(self.f(1.3e-2), '13ms')
+        self.assertEqual(self.f(0.3), '300ms')
+        self.assertEqual(self.f(1.3), '1s')
 
 if __name__ == '__main__':
     unittest.main()
