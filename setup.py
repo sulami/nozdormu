@@ -3,7 +3,7 @@ from setuptools import setup
 import nozdormu
 
 def readme():
-    with open('readme.md') as f:
+    with open('readme.rst') as f:
         return f.read()
 
 setup(name='nozdormu',
