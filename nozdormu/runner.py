@@ -80,11 +80,11 @@ class BenchRunner:
                                              'time': bench.exact(),
                                              'runs': bench.count, })
 
-            gc.enable()
             self.output('  Batch finished, time: {}s\n'.format(
                         round(time() - batchStart, 2)))
             totalResults.append({'batch': batch.__repr__(),
                                  'results': batchResults,})
+            gc.enable()
 
         self.output('{}Benchmarking finished\n'
                     '{} batches, {} benchmarks\n'
