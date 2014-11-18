@@ -18,25 +18,35 @@ class BatchMock(BenchBatch):
         pass
 
 class SilentRunner(BenchRunner):
-    def output(self, str):
+    def output(self, arg):
         pass # be silent
 
 class MainTestCase(unittest.TestCase):
-    def setUp(self):
-        pass
-
     def test_main_bench_running(self):
         nozdormu.main(benchRunner=SilentRunner)
 
 class LoaderTestCase(unittest.TestCase):
-    def setUp(self):
-        pass
-
     def test_load_from_module(self):
         b = BenchLoader()
         benchs = b.loadFromModule(sys.modules[__name__])
         for b in benchs.benchs:
             self.assertEqual(type(b), BenchSuite)
+
+class BatchTestCase(unittest.TestCase):
+    def setUp(self):
+        b = BenchLoader()
+        self.benchs = b.loadFromModule(sys.modules[__name__])
+
+    def test_min_runtime(self):
+        r = SilentRunner()
+        r.run(self.benchs)
+        results = r.results
+        self.assertTrue(r)
+        batch = results[0]
+        self.assertEqual(batch['batch'], 'BatchMock')
+        for b in batch['results']:
+            self.assertTrue(b['runs'] >= 16)
+            self.assertTrue(b['time'] * b['runs'] >= 0.001)
 
 class UtilTestCase(unittest.TestCase):
     def setUp(self):
