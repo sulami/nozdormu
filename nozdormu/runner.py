@@ -25,7 +25,7 @@ class BenchRunner:
         totalStart = time()
         noBatches = 0
         noBenchs = 0
-        totalResults = []
+        self.results = []
 
         try: # to open the baseline file
             with open('.nozdormu', 'r') as f:
@@ -87,7 +87,7 @@ class BenchRunner:
 
             self.output('  Batch finished, time: {}\n'.format(
                         format_time(time() - batchStart)))
-            totalResults.append({'batch': batch.__repr__(),
+            self.results.append({'batch': batch.__repr__(),
                                  'results': batchResults,})
             gc.enable()
 
@@ -98,7 +98,9 @@ class BenchRunner:
 
         # Write the new baseline
         with open('.nozdormu', 'w') as f:
-            f.write(json.dumps(totalResults, sort_keys=True, indent=2))
+            f.write(json.dumps(self.results, sort_keys=True, indent=2))
+
+        return self.results
 
     def output(self, arg):
         """Print wrapper to easily supress output in tests"""
