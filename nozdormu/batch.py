@@ -23,6 +23,12 @@ class BenchBatch:
         # Manual GC
         gc.collect()
 
+        # Warm up
+        self.setUp()
+        self.method()
+        self.tearDown()
+
+        # Timed run
         self.setUp()
         start = time()
         self.method()
