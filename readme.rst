@@ -27,7 +27,7 @@ Sorry, Python 2 will *not* work, that is just how it is.
 Usage example
 -------------
 
-.. code:: python
+.. code-block:: python
 
     import nozdormu
 
@@ -61,7 +61,7 @@ Usage example
 
 yields
 
-.. code::
+::
 
     Starting benchmark session
 
