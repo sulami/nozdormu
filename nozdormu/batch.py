@@ -1,3 +1,4 @@
+import gc
 from time import time
 
 from nozdormu.util import format_time
@@ -20,6 +21,9 @@ class BenchBatch:
     def run(self):
         """Peform setup/run method/teardown and time it"""
         self.count += 1
+        # Manual GC
+        gc.collect()
+
         self.setUp()
         start = time()
         self.method()
