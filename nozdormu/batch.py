@@ -20,7 +20,6 @@ class BenchBatch:
 
     def run(self):
         """Peform setup/run method/teardown and time it"""
-        self.count += 1
         # Manual GC
         gc.collect()
 
@@ -29,6 +28,8 @@ class BenchBatch:
         self.method()
         self.totalTime += time() - start
         self.tearDown()
+
+        self.count += 1
 
     def setUp(self):
         pass
