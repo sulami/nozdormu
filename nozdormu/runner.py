@@ -1,6 +1,12 @@
-import json
 import gc
-from time import time
+import json
+import sys
+
+if sys.platform == 'win32':
+    from time import clock as time
+else:
+    from time import time
+
 
 from nozdormu.util import format_time
 
