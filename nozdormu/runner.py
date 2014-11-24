@@ -41,8 +41,9 @@ class BenchRunner:
 
         self.output('Starting benchmark session\n')
         for batch in suite:
+            gcold = gc.isenabled()
             gc.disable()
-            gc.collect()
+
             baselineBatch = None
             if baseline:
                 for b in baseline:
@@ -95,7 +96,9 @@ class BenchRunner:
                         format_time(time() - batchStart)))
             self.results.append({'batch': batch.__repr__(),
                                  'results': batchResults,})
-            gc.enable()
+
+            if gcold:
+                gc.enable()
 
         self.output('Benchmarking finished\n'
                     '{} batches, {} benchmarks\n'
