@@ -107,7 +107,7 @@ Acknowledgements
 
 Ideas and inspiration by:
 
-- Python's unittest
+- Python's unittest and timeit modules
 - GRB's readygo
 - Cucumber
 
