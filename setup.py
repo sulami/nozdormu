@@ -15,6 +15,9 @@ setup(name='nozdormu',
       author_email='sulami@peerwire.org',
       license='MIT',
       packages=['nozdormu'],
+      install_requires=[
+          'six>=1.9.0',
+      ]
       zip_safe=False,
       classifiers=[
           'Development Status :: 4 - Beta',
