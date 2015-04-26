@@ -41,7 +41,7 @@ class BatchTestCase(unittest.TestCase):
         r = SilentRunner()
         r.run(self.benchs)
         results = r.results
-        self.assertTrue(r)
+        self.assertTrue(r.results)
         batch = results[0]
         self.assertEqual(batch['batch'], 'BatchMock')
         for b in batch['results']:
