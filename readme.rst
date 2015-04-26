@@ -20,9 +20,7 @@ Features
 Requirements
 ------------
 
-- Python 3.2+
-
-Sorry, Python 2 will *not* work, that is just how it is.
+- Python 2.6+ / 3.2+
 
 Usage example
 -------------
