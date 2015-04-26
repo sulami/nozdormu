@@ -36,7 +36,7 @@ class BenchRunner:
         try: # to open the baseline file
             with open('.nozdormu', 'r') as f:
                 baseline = json.loads(f.read())
-        except FileNotFoundError:
+        except IOError:
             baseline = None
 
         self.output('Starting benchmark session\n')
