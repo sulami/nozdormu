@@ -3,8 +3,11 @@ from setuptools import setup
 import nozdormu
 
 def readme():
-    with open('readme.rst') as f:
-        return f.read()
+    try:
+        with open('readme.rst') as f:
+            return f.read()
+    except: # FileNotFound?
+        return ''
 
 setup(name='nozdormu',
       version=nozdormu.VERSION,
@@ -15,6 +18,9 @@ setup(name='nozdormu',
       author_email='sulami@peerwire.org',
       license='MIT',
       packages=['nozdormu'],
+      install_requires=[
+          'six>=1.9.0',
+      ],
       zip_safe=False,
       classifiers=[
           'Development Status :: 4 - Beta',
