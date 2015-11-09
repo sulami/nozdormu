@@ -30,7 +30,7 @@ class LoaderTestCase(unittest.TestCase):
         b = BenchLoader()
         benchs = b.loadFromModule(sys.modules[__name__])
         for b in benchs.benchs:
-            self.assertEqual(type(b), BenchSuite)
+            self.assertEqual(b.__class__, BenchSuite)
 
 class BatchTestCase(unittest.TestCase):
     def setUp(self):
@@ -41,7 +41,7 @@ class BatchTestCase(unittest.TestCase):
         r = SilentRunner()
         r.run(self.benchs)
         results = r.results
-        self.assertTrue(r)
+        self.assertTrue(r.results) # Make sure the array is not empty.
         batch = results[0]
         self.assertEqual(batch['batch'], 'BatchMock')
         for b in batch['results']:

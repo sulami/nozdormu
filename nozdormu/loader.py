@@ -1,3 +1,10 @@
+import sys
+
+if sys.version_info.major == 2:
+    from types import ClassType as batchType
+else:
+    batchType = type
+
 from nozdormu.batch import BenchBatch
 from nozdormu.suite import BenchSuite
 
@@ -12,7 +19,7 @@ class BenchLoader:
         benchs = []
         for name in dir(module):
             obj = getattr(module, name)
-            if isinstance(obj, type) and issubclass(obj, BenchBatch):
+            if isinstance(obj, batchType) and issubclass(obj, BenchBatch):
                 benchs.append(self.loadFromBatch(obj))
         return self.suiteClass(benchs)
 

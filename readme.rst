@@ -3,6 +3,12 @@ Nozdormu
 
 Python benchmarking for humans and dragons.
 
+.. image:: https://img.shields.io/pypi/v/nozdormu.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/nozdormu
+
+.. image:: https://img.shields.io/pypi/dm/nozdormu.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/nozdormu
+    
 Features
 --------
 
@@ -20,9 +26,7 @@ Features
 Requirements
 ------------
 
-- Python 3.2+
-
-Sorry, Python 2 will *not* work, that is just how it is.
+- Python 2.6+ / 3.2+
 
 Usage example
 -------------

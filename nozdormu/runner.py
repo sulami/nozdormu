@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import gc
 import json
 import sys
@@ -6,7 +8,6 @@ if sys.platform == 'win32':
     from time import clock as time
 else:
     from time import time
-
 
 from nozdormu.util import format_time
 
@@ -36,7 +37,7 @@ class BenchRunner:
         try: # to open the baseline file
             with open('.nozdormu', 'r') as f:
                 baseline = json.loads(f.read())
-        except FileNotFoundError:
+        except IOError:
             baseline = None
 
         self.output('Starting benchmark session\n')
